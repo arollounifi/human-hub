@@ -13,7 +13,11 @@ import os
 from pathlib import Path
 from django.contrib import staticfiles
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST = [
+    'https://web-production-ba64.up.railway.app',
+
+]
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
