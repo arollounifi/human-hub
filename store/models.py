@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
 from django.db import models
 from PIL import Image
 from django.conf import settings
@@ -62,7 +63,7 @@ class ShippingAddress(models.Model):
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    postal_code = models.CharField(max_length=20)
+    postal_code = models.IntegerField(max_length=20, validators=[MinLengthValidator(5)])
     country = models.CharField(max_length=100)
 
     def __str__(self):
@@ -73,7 +74,7 @@ class PaymentInfo(models.Model):
     card_number = models.CharField(max_length=16)
     cardholder_name = models.CharField(max_length=255)
     expiration_date = models.DateField()
-    cvv = models.CharField(max_length=4)
+    cvv = models.CharField(max_length=4, validators=[MinLengthValidator(4)])
 
     def __str__(self):
         return f'Payment Info for Order {self.order.id}'
