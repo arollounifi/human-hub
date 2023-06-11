@@ -1,6 +1,6 @@
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product, Category, Cart, CartItem, Order, ShippingAddress, PaymentInfo
+from .models import Product, Category, Cart, CartItem, Order
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -57,11 +57,7 @@ def add_to_cart(request):
     product_id = request.POST.get('product_id')
     quantity = int(request.POST.get('quantity'))
     product = get_object_or_404(Product, id=product_id)
-
-    # Use get_or_create to avoid error if Cart does not exist yet
     cart, created = Cart.objects.get_or_create(user=request.user)
-
-    # Check if the item is already in the cart
     cart_item, created = CartItem.objects.get_or_create(product=product, cart=cart, defaults={'quantity': quantity})
     if created:
         cart_item.quantity = quantity
@@ -103,27 +99,16 @@ def checkout(request):
         payment_form = PaymentInfoForm(request.POST, prefix='payment')
 
         if shipping_form.is_valid() and payment_form.is_valid():
-            # Get the user's cart
             cart = Cart.objects.get(user=request.user)
-
-            # Calculate the total
             total = sum([item.get_total() for item in cart.cartitem_set.all()])
-
-            # Create the shipping address
             shipping_address = shipping_form.save()
-
-            # Create the payment information
             payment_info = payment_form.save()
-
-            # Create the order
             order = Order.objects.create(
                 user=request.user,
                 total=total,
                 shipping_address=shipping_address,
                 payment_info=payment_info
             )
-
-            # Associate the CartItems with the Order
             for item in cart.cartitem_set.all():
                 order.cart_items.add(item)
 
@@ -144,10 +129,7 @@ def checkout(request):
 
 
 def order_complete(request, order_id):
-    # Get the order
     order = get_object_or_404(Order, id=order_id)
-
-    # Check that the order belongs to the user
     if order.user != request.user:
         return HttpResponseForbidden()
 

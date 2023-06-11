@@ -3,17 +3,13 @@
 {% block content %}
   <h1 class="my-4 text-center">Products</h1>
 
-  <!-- Start of Bootstrap grid system -->
   <div class="container">
     <div class="row">
       {% for product in products %}
-        <!-- Each product gets its own column and card -->
         <div class="col-lg-6 col-md-12 mb-4">
           <div class="card h-100">
             <div class="row g-0">
               <div class="col-md-6">
-                <!-- This assumes that you have an 'image' field in your 'product' model -->
-                <!-- Removed object-fit style to allow full image display -->
                 <img class="img-fluid rounded-start" src="{{ product.image.url }}" alt="{{ product.name }}" style="height: auto; width: 100%;">
               </div>
               <div class="col-md-6">

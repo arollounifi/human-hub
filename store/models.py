@@ -1,15 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
-from PIL import Image
-from django.conf import settings
 
-
-# each with a number of class variables representing database fields.
-
-# Each model is a Python class that subclasses django.db.models.Model.
-
-# Each attribute of the model represents a database field & is represented by an instance of a Field class.
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
