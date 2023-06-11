@@ -1,0 +1,44 @@
+{% extends "store/base_generic.html" %}
+
+{% load static %} <!-- TODO remove if unncessary -->
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron my-5 text-center">
+        <h1 class="display-4">Human Hub</h1>
+        <p class="lead">
+    Welcome to Human Hub, your premier intergalactic depot for all things Earthly. Each of our products is meticulously sourced and curated to provide our extraterrestrial clientele with the most authentic Earth experience. We pride ourselves on offering a wide variety of items that are essential for any visitor planning a trip to Earth. From the simple elegance of human cutlery to the intricate mechanics of everyday gadgets, our store is a treasure trove of Earth's finest. So, embark on your Earth adventure with us and discover the charm and utility of our worldly collection.
+    </div>
+
+    <div class="row mb-5">
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="thumbnail" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                    </h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <!-- Add to Cart form -->
+                            <form method="post" action="{% url 'add_to_cart' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <input type="number" name="quantity" min="1" max="99" value="1" style="width: 50px;">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+                            </form>
+                        </div>
+                        <small class="text-muted">{{ product.price }} Galactic Credits</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

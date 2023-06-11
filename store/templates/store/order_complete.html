@@ -1,0 +1,14 @@
+{% extends "store/base_generic.html" %}
+
+
+{% block content %}
+  <h2>Order Complete</h2>
+  <h3>Order ID: {{ order.id }}</h3>
+  <p>Total Price: ${{ order.total }}</p>
+  <h4>Shipping Address:</h4>
+  <p>Street: {{ order.shipping_address.street }}</p>
+  <p>City: {{ order.shipping_address.city }}</p>
+  <p>State: {{ order.shipping_address.state }}</p>
+  <p>Postal Code: {{ order.shipping_address.postal_code }}</p>
+  <p>Country: {{ order.shipping_address.country }}</p>
+{% endblock %}

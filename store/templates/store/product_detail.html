@@ -1,0 +1,34 @@
+{% extends "store/base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-lg-6">
+            {% if product.image %}
+                <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+                <p class="text-muted">No image available</p>
+            {% endif %}
+        </div>
+        <div class="col-lg-6">
+            <h1>{{ product.name }}</h1>
+            <p class="text-muted">{{ product.category.name }}</p>
+            <p>{{ product.description }}</p>
+            <h4 class="my-3">${{ product.price }}</h4>
+
+            <form method="post" action="{% url 'add_to_cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="quantity-label">Quantity:</span>
+                    </div>
+                    <input type="number" id="quantity" name="quantity" min="1" max="99" value="1" class="form-control" aria-describedby="quantity-label">
+                </div>
+                <button type="submit" class="btn btn-primary">Add to cart</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

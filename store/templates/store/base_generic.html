@@ -1,0 +1,103 @@
+
+<!-- It's common to have a base template that includes common elements like the doctype declaration,
+ HTML head, and main site navigation, and to extend this base template in your other templates.
+ This saves you from having to repeat this common code in every template. -->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My E-commerce Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark" style="margin: 10px; border-radius: 15px;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Human Hub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'product_list' %}">Products</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view_cart' %}">
+                        <img src="{% static 'media/cart.png' %}" class="cart-image">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  {% block content %}{% endblock %}
+
+<footer class="footer bg-dark rounded mx-3 my-4">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-3">
+                <h4 class="mb-4">Who Are We</h4>
+                <p>Established in 3022, Human Hub was born out of a cosmic fascination for Earth's unique offerings. Capitalizing on advanced wormhole technology, this intergalactic venture rapidly became the go-to source for Earthly goods, delighting beings across the galaxy with its swift and reliable service.</p>
+            </div>
+            <div class="col-lg-3">
+                <h4 class="mb-4">Support</h4>
+                <p>At Human Hub, we believe in the power of stellar customer support. Powered by our pioneering Light Tunnel Communication Protocol (TM), we provide prompt and efficient service to every corner of the galaxy. Thanks to our widespread Pitstop Beacons, help is always within your reach, irrespective of your celestial coordinates.</p>
+            </div>
+            <div class="col-lg-3">
+                <h4 class="mb-4">Services</h4>
+                <p>Human Hub is committed to exceeding your expectations with our exceptional service. We take great pride in personalizing your experience, ensuring all your purchases are delivered right to the closest asteroid or Human Hub Pitstop Beacon. Our over-lightspeed delivery system is unmatchable in the galaxy, cementing our position as the fastest service provider. Trust us to bring the best of Earth to you, with an unmatched pace and precision.</p>
+            </div>
+            <div class="col-lg-3">
+                <h4 class="mb-4">Newsletter</h4>
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control my-3" placeholder="Your email address">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-4">Subscribe</button>
+                    <div class="footer-info">
+                        <h5>Contact Info:</h5>
+                        <p>Interstellar Hotline: +1 800 123 4567</p>
+                        <p>Quantum Email: contact@humanhub.galaxy</p>
+                        <p>Headquarters: Starbase 5, Orion Arm, Milky Way Galaxy</p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom text-center py-3">
+        <p>&copy; 2023 Human Hub. All Interstellar Rights Reserved.</p>
+    </div>
+</footer>
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+</body>
+</html>

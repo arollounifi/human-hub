@@ -1,0 +1,23 @@
+{% extends "store/base_generic.html" %}
+
+{% block content %}
+  <h2>Checkout</h2>
+  {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+      {{ message }}
+    </div>
+  {% endfor %}
+
+  <form method="post">
+    {% csrf_token %}
+
+    <h3>Shipping Address</h3>
+    {{ shipping_form.as_p }}
+
+    <h3>Payment Information</h3>
+    {{ payment_form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Confirm Order</button>
+  </form>
+{% endblock %}
+

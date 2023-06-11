@@ -1,0 +1,17 @@
+
+<!-- this template is used to display the list of categories in the store
+we loop over all the categories and display each one as a list item.
+The  url 'category_detail' category.id  expression generates a URL to the detail page for each category.-->
+
+{% extends "store/base_generic.html" %}
+
+{% block content %}
+  <h2>Product Categories</h2>
+  <ul>
+    {% for category in categories %}
+      <li>
+        <a href="{% url 'category_detail' category.id %}">{{ category.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

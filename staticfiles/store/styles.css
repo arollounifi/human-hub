@@ -1,0 +1,130 @@
+/* CSS HEX */
+/* --indigo: #520c6eff;
+--turquoise: #27d9c7ff;
+--tropical-indigo: #8b83f9ff;
+--floral-white: #fefaf2ff;
+--violet-web-color: #e08affff;
+
+--tickle-me-pink: #f08caeff;
+--plum: #9a4c95ff;
+--pumpkin: #ff8c42ff;
+--violet-jtc: #4d2d52ff;
+--dark-purple: #1d1a31ff;*/
+
+
+body {
+    background-color: #be31b4;  /* A shade of purple */
+    color: #fff;  /* White text */
+    font-family: 'Monomaniac One', monospace;
+    }
+
+a {
+    color: #A0F0ED;  /* Some kind of alien green */
+}
+
+.navbar{
+    background-color: #9b65e7;  /* A darker purple */
+    border: none;
+}
+
+.navbar a {
+   color: #efefff; /* light purple */
+}
+
+.navbar a:hover {
+   color: #b4b2ff; /* even lighter purple */
+}
+
+button, .form-control {
+   background-color: #3f0e7a; /* slightly brighter purple */
+   color: #efefff; /* light purple */
+}
+
+button:hover, .form-control:focus {
+   background-color: #524bd7; /* even brighter purple */
+   color: #000000; /* black text for contrast */
+}
+
+/* Cart Page Styles */
+
+.cart-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+.cart-items {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cart-items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-items th,
+.cart-items td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.cart-items th {
+    background-color: #333;
+    color: #fff;
+}
+
+.cart-total {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.checkout-btn:hover {
+    background-color: #0056b3;
+}
+
+.cart-image {
+    width: 25px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.thumbnail{
+	width: 100%;
+	height: 200px;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+}
+
+.form-field{
+	width:250px;
+	display: inline-block;
+	padding: 5px;
+}
+
+.hidden{
+	display: none!important;
+}

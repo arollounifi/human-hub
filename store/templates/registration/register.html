@@ -1,0 +1,16 @@
+
+<!--  displays a heading, and then the form.
+The  csrf_token  template tag is for security; it adds a hidden input field containing a
+token that Django checks on form submission to prevent cross site request forgery.
+The  form.as_p  template tag outputs the form fields as paragraph elements. -->
+
+{% extends "store/base_generic.html" %}
+
+{% block content %}
+<h2>Register</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+{% endblock %}
