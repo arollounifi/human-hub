@@ -1,1 +1,1 @@
-web: gunicorn djangoProject.wsgi --log-file -
+web: python manage.py makemigrations && python manage.py migrate && python manage.py collecstatic --noinput && gunicorn djangoProject.wsgi --log-file-
